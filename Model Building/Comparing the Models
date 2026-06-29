@@ -1,0 +1,22 @@
+import matplotlib.pyplot as plt
+
+results = {
+    'Decision Tree': dt_acc * 100,
+    'Random Forest': rf_acc * 100,
+    'KNN': knn_acc * 100,
+    'XGBoost': xgb_acc * 100
+}
+
+comparison_df = pd.DataFrame(list(results.items()), columns=['Model', 'Accuracy (%)'])
+comparison_df = comparison_df.sort_values(by='Accuracy (%)', ascending=False)
+print(comparison_df)
+
+plt.figure(figsize=(8,5))
+plt.bar(comparison_df['Model'], comparison_df['Accuracy (%)'], color=['#4C72B0','#55A868','#C44E52','#8172B2'])
+plt.ylabel('Accuracy (%)')
+plt.title('Model Comparison - Flood Prediction')
+plt.ylim(0, 100)
+for i, v in enumerate(comparison_df['Accuracy (%)']):
+    plt.text(i, v + 1, f"{v:.2f}%", ha='center')
+plt.tight_layout()
+plt.show()
