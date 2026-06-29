@@ -1,0 +1,11 @@
+from sklearn.ensemble import RandomForestClassifier
+
+rf_model = RandomForestClassifier(n_estimators=200, criterion='entropy', max_depth=10, random_state=42)
+rf_model.fit(X_train, y_train)
+
+rf_pred = rf_model.predict(X_test)
+rf_acc = accuracy_score(y_test, rf_pred)
+
+print("Random Forest Accuracy:", rf_acc * 100, "%")
+print(classification_report(y_test, rf_pred))
+print(confusion_matrix(y_test, rf_pred))
