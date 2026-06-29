@@ -1,0 +1,18 @@
+import pickle
+
+# Pick the best model based on comparison (XGBoost in this case, per your validation scenario)
+best_model = xgb_model
+best_model_name = "XGBoost"
+best_accuracy = xgb_acc * 100
+
+print(f"Best Model: {best_model_name} with Accuracy: {best_accuracy:.2f}%")
+
+# Save the model for Flask deployment
+with open('flood_model.pkl', 'wb') as f:
+    pickle.dump(best_model, f)
+
+# If you used scaling (e.g. for KNN comparison) and want to save it too:
+with open('scaler.pkl', 'wb') as f:
+    pickle.dump(scaler, f)
+
+print("Model saved as flood_model.pkl")
